@@ -28,7 +28,7 @@ def main():
     holidays = response.json()['response']['holidays']
     for holiday in holidays:
         month = holiday['date']['datetime']['month']
-        print(f"""День: {holiday['date']['datetime']['day']}/{MONTHS[month-1]}
+        print(f"""День: {holiday['date']['datetime']['day']} {MONTHS[month-1]}
 Название праздника: {holiday['name']}
 Описание: {holiday['description']}\n""")
 
