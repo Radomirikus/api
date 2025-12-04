@@ -3,6 +3,21 @@ import os
 from dotenv import load_dotenv
 
 
+MONTHS = [
+    "января",
+    "февраля",
+    "марта",
+    "апреля",
+    "мая",
+    "июня",
+    "июля",
+    "августа",
+    "сентября",
+    "октября",
+    "ноября",
+    "декабря",
+]
+
 def main():
     load_dotenv()
     token = os.getenv("TOKEN")
@@ -12,9 +27,11 @@ def main():
     response.raise_for_status()
     holidays = response.json()['response']['holidays']
     for holiday in holidays:
-        print(f"""День: {holiday['date']['datetime']['day']}/{holiday['date']['datetime']['month']}
+        month = holiday['date']['datetime']['month']
+        print(f"""День: {holiday['date']['datetime']['day']}/{MONTHS[month-1]}
 Название праздника: {holiday['name']}
-Описание: {holiday['description']} \n""")
+Описание: {holiday['description']}\n""")
+
 
 if __name__ == '__main__':
     main()
